@@ -1,0 +1,13 @@
+
+error:
+
+C:\Users\maria\Desktop\I-A\Studio code\TP Obligatorio - GestionEscolar 2\node_modules\express\lib\router\index.js:469
+
+
+mi solucion fue quitar el siguiente codigo, lo dejo aqui anotado por si tengo que volver a ponerlo.
+
+en la linea 468 pegar esto:
+
+ if (typeof fn !== 'function') {
+      throw new TypeError('Router.use() requires a middleware function but got a ' + gettype(fn))
+    }
