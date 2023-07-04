@@ -15,7 +15,8 @@ class Server {
     routes() {
         this.app.use('/estudiantes', require('../routes/estudiantesRoute'));
         this.app.use('/profesores', require('../routes/profesoresRoute'));
-        this.app.use('/cursos', require('../routes/cursosRoute'))
+        this.app.use('/cursos', require('../routes/cursosRoute'));
+        this.app.use('/usuarios', require('../routes/usuariosRoute'))
     }
     middlewares() {
         this.app.use(express.json());
