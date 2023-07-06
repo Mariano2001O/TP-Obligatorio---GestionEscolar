@@ -1,5 +1,15 @@
 const db = require('./../config/db');
 const { Router } = require("express");
+// modulo para cifrado de nodejs
+const hashlib = require('crypto');
+
+// Función para cifrar la contraseña
+const encryptPassword = (PASSWORD) => {
+    const hash = hashlib.createHash('sha256');
+    hash.update(PASSWORD);
+    return hash.digest('hex');
+};
+
 // tiene que ser asincronica porque todo se ejecuta al mismo tiempo y de esa manera anda
 // el console log 
 exports.obtenerUsuarios = async () => {
@@ -15,11 +25,13 @@ exports.getUsuariosById = async (id) => {
 }
 
 exports.addUsuarios = async (nuevoUsuario) => {
-    const { rows, fields } = await db.execute('INSERT INTO usuarios (username, PASSWORD) values (?,?)', [nuevoUsuario.username, nuevoUsuario.PASSWORD]);
+    const encryptedPassword = encryptPassword(nuevoUsuario.PASSWORD);
+    const { rows, fields } = await db.execute('INSERT INTO usuarios (username, PASSWORD) values (?,?)', [nuevoUsuario.username, encryptedPassword]);
     return rows;
 }
 exports.updateUsuarios = async (usuarios) => {
-    const [rows, fields] = await db.execute('UPDATE usuarios SET username = ?, PASSWORD = ? WHERE id = ?', [usuarios.username, usuarios.PASSWORD, usuarios.id]);
+    const encryptedPassword = encryptPassword(usuarios.PASSWORD);
+    const [rows, fields] = await db.execute('UPDATE usuarios SET username = ?, PASSWORD = ? WHERE id = ?', [usuarios.username, encryptedPassword, usuarios.id]);
     return rows;
 }
 

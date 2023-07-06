@@ -11,7 +11,7 @@ router.get('/', CursosController.getCursos);
 router.get('/:id', CursosController.getCursoById);
 // router.post('/', CursosController.addCurso);
 // router.put('/:id', CursosController.updateCurso);
-router.delete('/:id',CursosController.deleteCursoById)
+router.delete('/:id', CursosController.deleteCursoById)
 
 router.put('/', //validacion de campos en la peticion.
     [
