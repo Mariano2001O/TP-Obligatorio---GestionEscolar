@@ -39,5 +39,3 @@ exports.deleteUsuariosById = async (id) => {
     const [rows, fields] = await db.execute('DELETE FROM usuarios WHERE id = ?', [id]);
     return rows;
 }
-
-//la encriptacion solo esta en las password de la tabla usuarios
