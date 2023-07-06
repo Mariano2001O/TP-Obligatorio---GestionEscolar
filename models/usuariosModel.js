@@ -40,4 +40,4 @@ exports.deleteUsuariosById = async (id) => {
     return rows;
 }
 
-
+//la encriptacion solo esta en las password de la tabla usuarios
